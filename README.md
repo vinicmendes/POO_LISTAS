@@ -1,2 +1,3 @@
-# POO_LIST01
-Lista 01 P00
+# Listas desenvolvidas na matéria de Programação Orientada a Objeto
+CONTEÚDO:
+  - Lista 01

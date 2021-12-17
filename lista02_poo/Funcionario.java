@@ -1,15 +1,17 @@
 
 package lista02_poo;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author vinicius
  */
 public class Funcionario {
-    private String nomeFuncionario;
+    private final String nomeFuncionario;
     
     // dd/mm/aaaa
-    private String dataNascimento ;
+    private final String dataNascimento ;
     
     // dd/mm/aaaa
     private String dataAdmissao;
@@ -29,13 +31,13 @@ public class Funcionario {
     public static final float TAXA_3 = (float) 0.11;
     
     //VALORES REFERENTES AO IMPOSTO DE RENDA
-    public static final float ALIQUOTA_1 = (float) 7.5;
+    public static final float ALIQUOTA_1 = (float) 0.075;
     public static final float PARCELA_1 = (float) 142.80;
-    public static final float ALIQUOTA_2 = (float) 15.0;
+    public static final float ALIQUOTA_2 = (float) 0.15;
     public static final float PARCELA_2 = (float) 354.80;
-    public static final float ALIQUOTA_3 = (float) 22.5;
+    public static final float ALIQUOTA_3 = (float) 0.225;
     public static final float PARCELA_3 = (float) 636.13;
-    public static final float ALIQUOTA_4 = (float) 27.5;
+    public static final float ALIQUOTA_4 = (float) 0.275;
     public static final float PARCELA_4 = (float) 869.36;
     public static final float VALUE1 = (float) 1903.99;
     public static final float VALUE2 = (float) 2826.65;
@@ -144,10 +146,13 @@ public class Funcionario {
     }
     
     public void folhaPagamento(){
-        System.out.println("O salario bruto do funcionario "+this.nomeFuncionario+" é: "+this.salario);
-        System.out.println("foram descontados R$"+descontoINSS()+
-                " referentes ao INSS, alem de R$"+descontoIR()+" referente ao imposto de renda."
-                + "Seu salario liquido é: "+salarioLiquido());
+        DecimalFormat formatador = new DecimalFormat("0.00");
+        System.out.println("O salario bruto do(a) funcionario "+this.nomeFuncionario+" é: "+formatador.format(this.salario));
+        System.out.println("Foram descontados R$"+formatador.format(descontoINSS())+
+                " referentes ao INSS");
+        System.out.println("além de R$"+formatador.format(descontoIR())+" referente ao imposto de renda.");
+        System.out.println("Seu salario liquido é: "+ formatador.format(salarioLiquido()));
+        System.out.println("");
     }
     
     

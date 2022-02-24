@@ -1,6 +1,5 @@
 
 package atividade04.modelo;
-
 import java.util.Arrays;
 
 /**

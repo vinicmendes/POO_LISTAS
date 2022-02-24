@@ -1,6 +1,5 @@
 
 package atividade04.controle;
-
 import atividade04.persistencia.arrayIntDAO;
 import java.util.Arrays;
 
@@ -15,7 +14,6 @@ public class controleVetInt {
     }
     public void inserePosicao(int posicao, int valor) {
         vet.inserirBit(posicao, valor);
-        System.out.println("Inserção realizada com sucesso");
     }
     
     public int[] getVetor() {

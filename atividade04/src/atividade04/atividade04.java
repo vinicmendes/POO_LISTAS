@@ -1,23 +1,19 @@
-package atividade04;
 
+package atividade04;
 import atividade04.visao.telaArray;
 import atividade04.visao.telaArrayString;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 /**
  *
  * @author vinicius
  */
 public class atividade04 {
-    
     public static void main(String[] args) {
         int tamanho = 0;
         int option;
         Scanner scan = new Scanner(System.in);
-
         boolean continuar = true;
-
         do {
             try {
                 System.out.print("Insira o tamanho do array desejado: ");
@@ -31,7 +27,6 @@ public class atividade04 {
         } while (continuar);
 
         continuar = true;
-
         while (true) {
             mostrarMenu();
             do {

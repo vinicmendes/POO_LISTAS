@@ -1,6 +1,5 @@
 
 package atividade04.visao;
-
 import atividade04.controle.controleVetString;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -33,7 +32,7 @@ public class telaArrayString {
                             telaInserirBit();
                             break;
                         case 2:
-                            telaListarBits();
+                            telaPrintArray();
                             break;
                         case 3:
                             telaAcessarBit();
@@ -90,7 +89,6 @@ public class telaArrayString {
                 posicao = scan.nextInt();
                 System.out.print("Digite a valor: ");
                 valor = scan.next();
-
                 try {
                     if ("0".equals(valor) || "1".equals(valor)) {
                         bits.insereBit(posicao, valor);
@@ -110,12 +108,12 @@ public class telaArrayString {
         } while (continueLoop);
     }
 
-    public void telaListarBits() {
+    public void telaPrintArray() {
         System.out.println(bits.listarBits());
     }
 
     public void telaAcessarBit() {
-        boolean continueLoop = true;
+        boolean continuar = true;
         int posicao;
 
         do {
@@ -125,20 +123,17 @@ public class telaArrayString {
 
                 if (posicao < 0 || posicao > bits.tamanho()) {
                     System.err.println("Posição inválida!");
-
                 } else {
                     System.out.println("A posição "
                             + posicao + " está preenchida com ->  "
                             + bits.recuperarPos(posicao));
                 }
-
-                continueLoop = false;
-
+                continuar = false;
             } catch (InputMismatchException inputMismatchException) {
                 System.out.println("Insira um valor inteiro");
                 scan.nextLine();
             }
-        } while (continueLoop);
+        } while (continuar);
     }
 
     public void telaArrayIgual() {

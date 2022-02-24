@@ -1,5 +1,5 @@
-package atividade04.visao;
 
+package atividade04.visao;
 import atividade04.controle.controleVetInt;
 import java.util.Arrays;
 import java.util.InputMismatchException;

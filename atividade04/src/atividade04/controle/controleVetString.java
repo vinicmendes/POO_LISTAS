@@ -17,7 +17,6 @@ public class controleVetString {
     
     public void insereBit(int posicao, String valor) {
         bit.inserirPosicao(posicao, valor);
-        System.out.println("Inserção realizada com sucesso");
     }
     
     public String[] getVetor() {

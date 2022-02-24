@@ -1,6 +1,5 @@
 
 package atividade04.persistencia;
-
 import atividade04.modelo.arrayString;
 
 /**
@@ -8,29 +7,31 @@ import atividade04.modelo.arrayString;
  * @author vinicius
  */
 public class arrayStringDAO {
-    final private arrayString arrayBits;
+    final private arrayString vet;
     
     public arrayStringDAO(int tamanho){
-        arrayBits = new arrayString(tamanho);
+        vet = new arrayString(tamanho);
     }
-    
+    public int tamanho(){
+        return vet.tamanho();
+    }
     public void inserirPosicao(int posicao,String valor){
-        arrayBits.setPosicao(posicao, valor);
-    }
-    
-    public String[] getArray(){
-        return arrayBits.getVet();
+        vet.setPosicao(posicao, valor);
     }
     
     public String recuperarBit(int posicao){
-        return arrayBits.getPosicao(posicao);
+        return vet.getPosicao(posicao);
     }
+    
+    
+    public String[] getArray(){
+        return vet.getVet();
+    }
+    
     
     public String listarBits(){
-        return arrayBits.toString();
+        return vet.toString();
     }
     
-    public int tamanho(){
-        return arrayBits.tamanho();
-    }
+    
 }

@@ -11,11 +11,11 @@ import java.util.Scanner;
  */
 public class telaArray {
     final Scanner in;
-    final private controleVetInt bit;
+    final private controleVetInt pos;
 
     public telaArray(int tamanho) {
         in = new Scanner(System.in);
-        this.bit = new controleVetInt(tamanho);
+        this.pos = new controleVetInt(tamanho);
     }
 
     public void telaInicial() {
@@ -28,56 +28,52 @@ public class telaArray {
                     op = in.nextInt();
                     switch (op) {
                         case 1:
-                            telaInserirBit();
+                            telaInserir();
                             break;
                         case 2:
-                            telaAcessarBit();
+                            telaAcessar();
                             break;
                         case 3:
-                            telaPrintArray();
+                            telaImprimir();
                             break;
                         case 4:
-                            telaArrayIgual();
+                            telaComparacao();
                             break;
                         case 5:
-                            telaOperaçãoNOT();
+                            telaNot();
                             break;
                         case 6:
-                            System.out.println("\n");
                             System.out.println("----------------------------------------------------------");
                             System.out.println("O array base é inicializado com 0 em todas as posições.\n"
                                     + "Caso ainda não o alterou, favor utilizar a opção Inserir Bit para preencher"
                                     + " suas respectivas posições");
                             System.out.println("----------------------------------------------------------\n");
-                            System.out.println("\n");
-                            telaOperaçãoOR();
+                            telaOr();
                             break;
                         case 7:
-                            System.out.println("\n");
                             System.out.println("----------------------------------------------------------");
                             System.out.println("O array base é inicializado com 0 em todas as posições.\n"
                                     + "Caso ainda não o alterou, favor utilizar a opção Inserir Bit para preencher"
                                     + " suas respectivas posições");
                             System.out.println("----------------------------------------------------------\n");
-                            System.out.println("\n");
-                            telaOperaçãoAND();
+                            telaAnd();
                             break;
                         case 8:
                             System.exit(0);
                         default:
-                            System.err.println("Digite uma opção válida");
+                            System.err.println("ERRO! Digite uma opção válida");
                     }
                     continuar = false;
                 } catch (InputMismatchException inputMismatchException) {
-                    System.err.println("Insira um valor inteiro");
+                    System.err.println("ERRO! Insira um valor inteiro");
                     in.nextLine();
                 }
             } while (continuar);
         }
     }
-    public void telaInserirBit() {
+    public void telaInserir() {
         int posicao, valor;
-        boolean continueLoop = true;
+        boolean continuar = true;
         
         do {
             try {
@@ -86,29 +82,29 @@ public class telaArray {
                 System.out.print("Valor: ");
                 valor = in.nextInt();
                 try {
-                    if (valor < 0 || valor > 1) {
-                        System.err.println("Apenas 0's e 1's são válidos");
+                    if (valor >= 0 && valor <= 1) {
+                        pos.inserePosicao(posicao, valor);
                     } else {
-                        bit.inserePosicao(posicao, valor);
+                        System.err.println("ERRO! Apenas 0's e 1's são válidos");
                     }
                 } catch (ArrayIndexOutOfBoundsException exception) {
-                    System.err.println("Digite uma posição válida!");
+                    System.err.println("ERRO! Digite uma posição válida!");
                 }
 
-                continueLoop = false;
+                continuar = false;
 
             } catch (InputMismatchException inputMismatchException) {
-                System.err.println("Insira um valor inteiro");
+                System.err.println("ERRO! Insira um valor inteiro");
                 in.nextLine();
             }
-        } while (continueLoop);
+        } while (continuar);
     }
 
-    public void telaPrintArray() {
-        System.out.println(bit.imprimirPosicoes());
+    public void telaImprimir() {
+        System.out.println(pos.imprimirPosicoes());
     }
 
-    public void telaAcessarBit() {
+    public void telaAcessar() {
         boolean continueLoop = true;
         int posicao;
 
@@ -117,30 +113,30 @@ public class telaArray {
                 System.out.print("Digite a posição-> ");
                 posicao = in.nextInt();
 
-                if (posicao < 0 || posicao > bit.tamanho()) {
-                    System.err.println("Posição inválida");
-
-                } else {
+                if (posicao >= 0 && posicao <= pos.tamanho()) {
                     System.out.println("A posição "
                             + posicao + " está preenchida com -> "
-                            + bit.recuperaPosicao(posicao));
+                            + pos.recuperaPosicao(posicao));
+                } else {
+                    System.err.println("ERRO! Posição inválida");
+                    
                 }
 
                 continueLoop = false;
 
             } catch (InputMismatchException inputMismatchException) {
-                System.out.println("Insira um valor inteiro");
+                System.err.println("ERRO! Insira um valor inteiro");
                 in.nextLine();
             }
         } while (continueLoop);
     }
 
-    public void telaArrayIgual() {
-        int[] vet = new int[bit.tamanho()];
+    public void telaComparacao() {
+        int[] vet = new int[pos.tamanho()];
         boolean continueLoop = true;
         int valor;
 
-        for (int i = 0; i < bit.tamanho(); i++) {
+        for (int i = 0; i < pos.tamanho(); i++) {
 
             do {
                 try {
@@ -148,7 +144,7 @@ public class telaArray {
                     valor = in.nextInt();
 
                     if (valor < 0 || valor > 1) {
-                        System.err.println("Apenas 0's e 1's são válidos");
+                        System.err.println("ERRO! Apenas 0's e 1's são válidos");
 
                     } else {
                         vet[i] = valor;
@@ -157,46 +153,46 @@ public class telaArray {
                     continueLoop = false;
 
                 } catch (InputMismatchException inputMismatchException) {
-                    System.out.println("Insira um valor inteiro");
+                    System.err.println("ERRO! Insira um valor inteiro");
                     in.nextLine();
                 }
             } while (continueLoop);
             continueLoop = true;
         }
 
-        System.out.println("Base -> " + Arrays.toString(bit.getVetor()));
+        System.out.println("Base -> " + Arrays.toString(pos.getVetor()));
         System.out.println("Passado como parâmetro->" + Arrays.toString(vet));
 
-        if (bit.equals(vet)) {
+        if (pos.equals(vet)) {
             System.out.println("São iguais");
         } else {
             System.err.println("São diferentes");
         }
     }
     
-    public void telaOperaçãoNOT() {
-        int[] res = bit.not();
+    public void telaNot() {
+        int[] res = pos.not();
 
-        System.out.println("Base -> " + Arrays.toString(bit.getVetor()) + "\n"
+        System.out.println("Base -> " + Arrays.toString(pos.getVetor()) + "\n"
                 + "Resultado -> " + Arrays.toString(res));
 
     }
     
-    public void telaOperaçãoAND() {
+    public void telaAnd() {
         int valor;
         boolean continueLoop1 = true;
-        int[] arr = new int[bit.tamanho()];
+        int[] arr = new int[pos.tamanho()];
         int[] res;
 
         System.out.println("Insira o array ->");
-        for (int i = 0; i < bit.tamanho(); i++) {
+        for (int i = 0; i < pos.tamanho(); i++) {
             do {
                 try {
                     System.out.print("Posição " + i + ": ");
                     valor = in.nextInt();
 
                     if (valor > 1 || valor < 0) {
-                        System.err.println("Digite 0 ou 1!");
+                        System.err.println("ERRO! Digite 0 ou 1!");
 
                     } else {
                         arr[i] = valor;
@@ -205,27 +201,27 @@ public class telaArray {
                     continueLoop1 = false;
 
                 } catch (InputMismatchException inputMismatchException) {
-                    System.out.println("Insira um valor inteiro");
+                    System.err.println("ERRO! Insira um valor inteiro");
                     in.nextLine();
                 }
             } while (continueLoop1);
             continueLoop1 = true;
         }
 
-        res = bit.and(arr);
-        System.out.println("Base -> " + Arrays.toString(bit.getVetor()) + "\n"
+        res = pos.and(arr);
+        System.out.println("Base -> " + Arrays.toString(pos.getVetor()) + "\n"
                           + "Passado como parâmetro -> " + Arrays.toString(arr) + "\n"
                           + "Resultado -> " + Arrays.toString(res));
     }
 
-    public void telaOperaçãoOR() {
+    public void telaOr() {
         int valor;
         boolean continueLoop1 = true;
-        int[] arr = new int[bit.tamanho()];
+        int[] arr = new int[pos.tamanho()];
         int[] res;
 
         System.out.println("Insira o array ->");
-        for (int i = 0; i < bit.tamanho(); i++) {
+        for (int i = 0; i < pos.tamanho(); i++) {
             do {
                 try {
                     System.out.print("Posição " + i + ": ");
@@ -238,14 +234,14 @@ public class telaArray {
                     }
                     continueLoop1 = false;
                 } catch (InputMismatchException inputMismatchException) {
-                    System.out.println("Insira um valor inteiro");
+                    System.err.println("ERRO! Insira um valor inteiro");
                     in.nextLine();
                 }
             } while (continueLoop1);
             continueLoop1 = true;
         }
-        res = bit.or(arr);
-        System.out.println("Base ->  " + Arrays.toString(bit.getVetor()) + "\n"
+        res = pos.or(arr);
+        System.out.println("Base ->  " + Arrays.toString(pos.getVetor()) + "\n"
                          + "Passado como parâmetro -> " + Arrays.toString(arr)+ "\n"
                          + "Resultado -> " + Arrays.toString(res));
     }

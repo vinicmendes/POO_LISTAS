@@ -9,19 +9,24 @@ import java.util.Scanner;
  * @author vinicius
  */
 public class atividade04 {
+    public static void mostrarMenu() {
+        System.out.println("      Escolha uma opção:     " + "\n"
+                + "          1: Array           " + "\n"
+                + "          2: String          ");
+    }
     public static void main(String[] args) {
         int tamanho = 0;
-        int option;
+        int opcao;
         Scanner scan = new Scanner(System.in);
         boolean continuar = true;
         do {
             try {
-                System.out.print("Insira o tamanho do array desejado: ");
+                System.out.print("ERRO! Insira o tamanho do array desejado: ");
                 tamanho = scan.nextInt();
                 continuar = false;
 
             } catch (InputMismatchException inputMismatchException) {
-                System.err.println("Insira um valor inteiro");
+                System.err.println("ERRO! Insira um valor inteiro");
                 scan.nextLine();
             }
         } while (continuar);
@@ -31,8 +36,8 @@ public class atividade04 {
             mostrarMenu();
             do {
                 try {
-                    option = scan.nextInt();
-                    switch (option) {
+                    opcao = scan.nextInt();
+                    switch (opcao) {
                         case 1:
                             telaArray tela = new telaArray(tamanho);
                             tela.telaInicial();
@@ -42,21 +47,15 @@ public class atividade04 {
                             telaString.telaInicial();
                             break;
                         default:
-                            System.err.println("Opção Inválida");
+                            System.err.println("ERRO! Essa opção é inválida");
                     }
                     continuar = false;
                 } catch (InputMismatchException inputMismatchException) {
-                    System.err.println("Insira um valor inteiro");
+                    System.err.println("ERRO! Insira um valor inteiro");
                     scan.nextLine();
                 }
             } while (continuar);
         }
-    }
-    public static void mostrarMenu() {
-        System.out.println("      Escolha uma opção:     " + "\n"
-                + "          1: Array           " + "\n"
-                + "          2: String          ");
-    }
-        
+    }    
 }
 

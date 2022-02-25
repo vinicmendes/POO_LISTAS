@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class telaArray {
     final Scanner in;
+    
     final private controleVetInt pos;
 
     public telaArray(int tamanho) {
@@ -18,6 +19,7 @@ public class telaArray {
         this.pos = new controleVetInt(tamanho);
     }
 
+    
     public void telaInicial() {
         int op;
         boolean continuar = true;
@@ -29,6 +31,7 @@ public class telaArray {
                     switch (op) {
                         case 1:
                             telaInserir();
+                            
                             break;
                         case 2:
                             telaAcessar();
@@ -40,6 +43,7 @@ public class telaArray {
                             telaComparacao();
                             break;
                         case 5:
+                            
                             telaNot();
                             break;
                         case 6:
@@ -49,8 +53,10 @@ public class telaArray {
                                     + " suas respectivas posições");
                             System.out.println("----------------------------------------------------------\n");
                             telaOr();
+                            
                             break;
                         case 7:
+                            
                             System.out.println("----------------------------------------------------------");
                             System.out.println("O array base é inicializado com 0 em todas as posições.\n"
                                     + "Caso ainda não o alterou, favor utilizar a opção Inserir Bit para preencher"
@@ -58,6 +64,8 @@ public class telaArray {
                             System.out.println("----------------------------------------------------------\n");
                             telaAnd();
                             break;
+                            
+                            
                         case 8:
                             System.exit(0);
                         default:
@@ -76,6 +84,8 @@ public class telaArray {
         boolean continuar = true;
         
         do {
+            
+            
             try {
                 System.out.print("Posição: ");
                 posicao = in.nextInt();
@@ -90,12 +100,15 @@ public class telaArray {
                 } catch (ArrayIndexOutOfBoundsException exception) {
                     System.err.println("ERRO! Digite uma posição válida!");
                 }
-
+              
                 continuar = false;
+                
 
             } catch (InputMismatchException inputMismatchException) {
                 System.err.println("ERRO! Insira um valor inteiro");
                 in.nextLine();
+                
+                
             }
         } while (continuar);
     }
@@ -106,6 +119,7 @@ public class telaArray {
 
     public void telaAcessar() {
         boolean continueLoop = true;
+        
         int posicao;
 
         do {
@@ -120,6 +134,7 @@ public class telaArray {
                 } else {
                     System.err.println("ERRO! Posição inválida");
                     
+                    
                 }
 
                 continueLoop = false;
@@ -127,10 +142,16 @@ public class telaArray {
             } catch (InputMismatchException inputMismatchException) {
                 System.err.println("ERRO! Insira um valor inteiro");
                 in.nextLine();
+                
             }
         } while (continueLoop);
+       
+        
     }
 
+    
+   
+    
     public void telaComparacao() {
         int[] vet = new int[pos.tamanho()];
         boolean continueLoop = true;
@@ -143,11 +164,11 @@ public class telaArray {
                     System.out.print("Posição " + i + "-> ");
                     valor = in.nextInt();
 
-                    if (valor < 0 || valor > 1) {
-                        System.err.println("ERRO! Apenas 0's e 1's são válidos");
-
-                    } else {
+                    if (valor >= 0 && valor <= 1) {
                         vet[i] = valor;
+                    } else {
+                        System.err.println("ERRO! Apenas 0's e 1's são válidos");
+                        
                     }
 
                     continueLoop = false;
@@ -171,6 +192,7 @@ public class telaArray {
     }
     
     public void telaNot() {
+        
         int[] res = pos.not();
 
         System.out.println("Base -> " + Arrays.toString(pos.getVetor()) + "\n"
@@ -182,6 +204,8 @@ public class telaArray {
         int valor;
         boolean continueLoop1 = true;
         int[] arr = new int[pos.tamanho()];
+        
+        
         int[] res;
 
         System.out.println("Insira o array ->");
@@ -191,11 +215,11 @@ public class telaArray {
                     System.out.print("Posição " + i + ": ");
                     valor = in.nextInt();
 
-                    if (valor > 1 || valor < 0) {
-                        System.err.println("ERRO! Digite 0 ou 1!");
-
-                    } else {
+                    if (valor <= 1 && valor >= 0) {
                         arr[i] = valor;
+                    } else {
+                        System.err.println("ERRO! Digite 0 ou 1!");
+                        
                     }
 
                     continueLoop1 = false;
@@ -227,10 +251,10 @@ public class telaArray {
                     System.out.print("Posição " + i + ": ");
                     valor = in.nextInt();
 
-                    if (valor > 1 || valor < 0) {
-                        System.err.println("Apenas 0's e 1's são válidos");
-                    } else {
+                    if (valor <= 1 && valor >= 0) {
                         arr[i] = valor;
+                    } else {
+                        System.err.println("Apenas 0's e 1's são válidos");
                     }
                     continueLoop1 = false;
                 } catch (InputMismatchException inputMismatchException) {

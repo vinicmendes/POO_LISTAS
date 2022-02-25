@@ -16,6 +16,7 @@ public class telaArrayString {
     public telaArrayString(int size) {
         this.in = new Scanner(System.in);
         this.pos = new controleVetString(size);
+        
     }
 
     public void telaInicial() {
@@ -28,6 +29,7 @@ public class telaArrayString {
                     op = in.nextInt();
                     switch (op) {
                         case 1:
+                            
                             telaInserir();
                             break;
                         case 2:
@@ -72,7 +74,6 @@ public class telaArrayString {
             } while (continuar);
         }
     }
-
     public void telaInserir() {
         int posicao;
         String valor;
@@ -84,10 +85,10 @@ public class telaArrayString {
                 System.out.print("Digite a valor: ");
                 valor = in.next();
                 try {
-                    if ("0".equals(valor) || "1".equals(valor)) {
-                        pos.insereBit(posicao, valor);
-                    } else {
+                    if (!"0".equals(valor) && !"1".equals(valor)) {
                         System.err.println("ERRO! Apenas 0's e 1's são válidos");
+                    } else {
+                        pos.insereBit(posicao, valor);
                     }
                 } catch (ArrayIndexOutOfBoundsException exception) {
                     System.err.println("ERRO! Digite uma posição válida!");
@@ -104,7 +105,6 @@ public class telaArrayString {
     public void telaImprimir() {
         System.out.println(pos.listarBits());
     }
-
     public void telaAcessar() {
         boolean continuar = true;
         int posicao;
@@ -114,28 +114,32 @@ public class telaArrayString {
                 System.out.print("Digite a posição: ");
                 posicao = in.nextInt();
 
-                if (posicao < 0 || posicao > pos.tamanho()) {
-                    System.err.println("ERRO! Posição inválida!");
-                } else {
+                if (posicao >= 0 && posicao <= pos.tamanho()) {
                     System.out.println("A posição "
                             + posicao + " está preenchida com ->  "
                             + pos.recuperarPos(posicao));
+                } else {
+                    System.err.println("ERRO! Posição inválida!");
                 }
                 continuar = false;
             } catch (InputMismatchException inputMismatchException) {
                 System.err.println("ERRO! Insira um valor inteiro");
                 in.nextLine();
             }
+            
         } while (continuar);
     }
 
     public void telaComparacao() {
         String[] arr = new String[pos.tamanho()];
+        
         boolean continueLoop = true;
+        
         String valor;
 
         for (int i = 0; i < pos.tamanho(); i++) {
 
+            
             do {
                 try {
                     System.out.print("Posição " + i + "-> ");
@@ -159,15 +163,18 @@ public class telaArrayString {
         System.out.println("Base ->  " + Arrays.toString(pos.getVetor()));
         System.out.println("Passado como parâmetro->  " + Arrays.toString(arr));
 
+        
         if (pos.equalsStrings(arr)) {
             System.out.println("São iguais!");
         } else {
+            
             System.err.println("São diferentes!");
         }
     }
 
     public void telaNot() {
         String[] res = pos.not();
+        
         System.out.println("Base -> " + Arrays.toString(pos.getVetor()) + "\n"
                 + "Resultado -> " + Arrays.toString(res));
 
@@ -176,6 +183,7 @@ public class telaArrayString {
     public void telaAnd() {
         String valor;
         boolean continueLoop1 = true;
+        
         String[] arr = new String[pos.tamanho()];
         String[] res;
 
@@ -184,13 +192,15 @@ public class telaArrayString {
             do {
                 try {
                     System.out.print("Posição " + i + ": ");
+                    
                     valor = in.next();
 
-                    if ("1".equals(valor) || "0".equals(valor)) {
-                        arr[i] = valor;
-
-                    } else {
+                    if (!"1".equals(valor) && !"0".equals(valor)) {
+                        
                         System.err.println("ERRO! Apenas 0's e 1's são válidos");
+                    } else {
+                        arr[i] = valor;
+                        
                     }
 
                     continueLoop1 = false;
@@ -198,6 +208,7 @@ public class telaArrayString {
                 } catch (InputMismatchException inputMismatchException) {
                     System.err.println("ERRO! Insira um valor inteiro");
                     in.nextLine();
+                    
                 }
             } while (continueLoop1);
             continueLoop1 = true;
@@ -221,12 +232,11 @@ public class telaArrayString {
                 try {
                     System.out.print("Posição " + i + ": ");
                     valor = in.next();
-
-                    if ("1".equals(valor) || "0".equals(valor)) {
-                        arr[i] = valor;
-
-                    } else {
+                    if (!"1".equals(valor) && !"0".equals(valor)) {
                         System.err.println("ERRO! Apenas 0's e 1's são válidos");
+                    } else {
+                        arr[i] = valor;
+                        
                     }
 
                     continueLoop1 = false;
@@ -237,12 +247,15 @@ public class telaArrayString {
                 }
             } while (continueLoop1);
             continueLoop1 = true;
+            
+            
         }
 
         res = pos.or(arr);
         System.out.println("Base ->  " + Arrays.toString(pos.getVetor()) + "\n"
                         + "Passado como parâmetro -> "+ Arrays.toString(arr) + "\n"
                         + "Resultado -> "+ Arrays.toString(res));
+        
     }
     public void menu() {
                             System.out.println("\n");
@@ -256,5 +269,9 @@ public class telaArrayString {
                         +  "           8-> Sair            ");
         
                             System.out.println("\n");
+                            
     }
-}
+    
+    
+    }
+

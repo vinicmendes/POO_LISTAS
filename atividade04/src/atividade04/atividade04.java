@@ -10,9 +10,9 @@ import java.util.Scanner;
  */
 public class atividade04 {
     public static void mostrarMenu() {
-        System.out.println("      Escolha uma opção:     " + "\n"
-                + "          1: Array           " + "\n"
-                + "          2: String          ");
+        System.out.println("      Escolha uma opção de tipo de array:     " + "\n"
+                         + "                 1: Array                      " + "\n"
+                         + "                 2: String                         ");
     }
     public static void main(String[] args) {
         int tamanho = 0;
